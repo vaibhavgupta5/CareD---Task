@@ -8,6 +8,7 @@ import { Calendar, Heart, Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { IconBulb, IconMoodAngry, IconMoodHappy, IconMoodNeutral, IconMoodSad } from "@tabler/icons-react";
+import { toast } from "sonner";
 
 export default function Page() {
   const { email, mood, setMood } = useUser();
@@ -111,7 +112,13 @@ export default function Page() {
                 <div className="flex flex-col gap-2">
                   {moods.map((moodx) => (
                     <div
-                      onClick={() => setMood(moodx.mood)}
+                      onClick={() => {setMood(moodx.mood)
+                        toast(`Mood Updated to ${moodx.mood}`,
+                            {
+                                description:"Check out some tips buddy!"
+                            }
+                        )
+                      }}
                       key={moodx.mood}
                       className="text-sm cursor-pointer flex justify-between items-center gap-2 font-medium p-4 rounded-md border-[#007EFF]/50 border-2 bg-white"
                     >
