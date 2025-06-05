@@ -4,11 +4,22 @@ import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { useUser } from "@/store/zustStore";
 import HealthArticle from "@/components/health-article";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
-  const { mood } = useUser();
+  const { mood, email } = useUser();
   console.log(mood);
+
+  const router = useRouter()
+    useEffect(() => {
+  
+      if(!email){
+          router.push("/login")
+      }
+  
+    }, [email, router])
+  
 
   return (
     <SidebarProvider

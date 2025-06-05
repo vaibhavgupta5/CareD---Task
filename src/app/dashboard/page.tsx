@@ -15,23 +15,35 @@ import {
   IconMoodSad,
 } from "@tabler/icons-react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
   const { email, mood, setMood } = useUser();
   console.log(mood);
 
+  const[loading, setLoading] = useState(true)
   const[articleRed, setArticleRed] = useState(0);
   const [healthTips, sethealthTips] = useState([]);
   const date = new Date();
   const fDate = format(date, "EEE MMM dd yyyy");
 
-
+const router = useRouter()
   useEffect(() => {
+
+    if(!email){
+        setLoading(true)
+        router.push("/login")
+    }
+    else{
+        setLoading(false)
+    }
+
     const len = Number(localStorage.getItem("articles"))
     if(len>0){
         setArticleRed(len);
     }
-  }, [])
+
+  }, [email, router])
 
   const getTips = async (mood: string) => {
     console.log(mood);
@@ -55,9 +67,9 @@ export default function Page() {
   useEffect(() => {
     getTips(mood);
 
-    console.log(healthTips);
   }, [mood]);
 
+  if(loading) return <div className="bg-[#007EFF] text-xl font-bold flex justify-center h-[100vh] text-white items-center">Loading!</div>
   return (
     <SidebarProvider
       style={
