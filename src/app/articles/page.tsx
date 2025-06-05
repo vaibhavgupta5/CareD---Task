@@ -4,12 +4,11 @@ import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { useUser } from "@/store/zustStore";
 import HealthArticle from "@/components/health-article";
+import { Suspense } from "react";
 
 export default function Page() {
   const { mood } = useUser();
   console.log(mood);
-
-
 
   return (
     <SidebarProvider
@@ -24,10 +23,10 @@ export default function Page() {
       <SidebarInset className="bg-[#007EFF]/5">
         <SiteHeader />
 
-        <div className="p-8 flex flex-col gap-3">
-        
-        <HealthArticle/>
-         
+        <div className="md:p-8 p-4 flex flex-col gap-3">
+          <Suspense fallback={<p>Loading...</p>}>
+            <HealthArticle />
+          </Suspense>
         </div>
       </SidebarInset>
     </SidebarProvider>

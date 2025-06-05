@@ -79,7 +79,7 @@ export default function HealthArticle() {
         {filterdArticles.length > 0  ? filterdArticles.map((article) => (
           <div
             key={article.url}
-            className="border-2 w-[31%] p-2 flex-col gap-1 flex shadow-2xs bg-white border-[#007EFF]/30 rounded-md"
+            className="border-2 md:w-[31%] p-2 flex-col gap-1 flex shadow-2xs bg-white border-[#007EFF]/30 rounded-md"
           >
             {article.urlToImage && (
               <Image

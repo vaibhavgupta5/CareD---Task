@@ -9,7 +9,7 @@ type User = {
 
 export const useUser = create<User>()((set) => ({
   email: "",
-  mood: "neutral",
+  mood: "happy",
   setEmail: (email) => set(() => ({ email: email })),
   setMood: (mood: string) => set(() => ({ mood: mood })),
 }));
