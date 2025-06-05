@@ -20,9 +20,18 @@ export default function Page() {
   const { email, mood, setMood } = useUser();
   console.log(mood);
 
+  const[articleRed, setArticleRed] = useState(0);
   const [healthTips, sethealthTips] = useState([]);
   const date = new Date();
   const fDate = format(date, "EEE MMM dd yyyy");
+
+
+  useEffect(() => {
+    const len = Number(localStorage.getItem("articles"))
+    if(len>0){
+        setArticleRed(len);
+    }
+  }, [])
 
   const getTips = async (mood: string) => {
     console.log(mood);
@@ -94,7 +103,7 @@ export default function Page() {
             </div>
 
             <div className="h-full flex flex-col justify-center items-center  border-[#007EFF] border-2   rounded-md bg-white w-[33%]">
-              <p className="text-xl font-bold text-[#007EFF]">{localStorage.getItem("articles")}</p>
+              <p className="text-xl font-bold text-[#007EFF]">{articleRed}</p>
               <p className="md:text-sm text-xs font-normal text-black/80">
                 News Viewed
               </p>
