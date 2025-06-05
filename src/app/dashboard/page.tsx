@@ -94,7 +94,7 @@ export default function Page() {
             </div>
 
             <div className="h-full flex flex-col justify-center items-center  border-[#007EFF] border-2   rounded-md bg-white w-[33%]">
-              <p className="text-xl font-bold text-[#007EFF]">15</p>
+              <p className="text-xl font-bold text-[#007EFF]">{localStorage.getItem("articles")}</p>
               <p className="md:text-sm text-xs font-normal text-black/80">
                 News Viewed
               </p>

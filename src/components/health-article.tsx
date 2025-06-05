@@ -105,6 +105,10 @@ export default function HealthArticle() {
               )}
               <button
                 onClick={() => {
+const currAticleLen = parseInt(localStorage.getItem("articles") || "0");
+localStorage.setItem("articles", (currAticleLen + 1).toString());
+
+
                   window.location.href = article.url;
                 }}
                 className="flex text-md cursor-pointer   rounded-md  mt-4 font-bold hover:translate-y-[-3px]  transition-all duration-300 gap-2 items-center text-[#007EFF]"
